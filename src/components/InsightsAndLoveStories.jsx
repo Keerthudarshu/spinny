@@ -4,37 +4,58 @@ import { ChevronRight, Star, Users, Car, Smile } from 'lucide-react';
 const STATS = [
   {
     value: '4.8/5',
-    desc: 'Our average review rating on Google and on Social platforms',
+    suffix: 'Our',
+    desc: 'average review rating on Google and on Social platforms',
     renderAvatar: () => (
-      <div style={{ width: '60px', height: '60px', borderRadius: '16px', backgroundColor: '#a855f7', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '28px', transform: 'rotate(5deg)' }}>
-        🤩
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+        {/* Purple diamond mascot from Image 3 */}
+        <path d="M30 4L54 28L30 52L6 28Z" fill="#7c3aed" stroke="#ffffff" strokeWidth="2.5" />
+        {/* Yellow stars above */}
+        <polygon points="12,14 14,10 16,14 20,14 17,17 18,21 14,19 10,21 11,17 8,14" fill="#fbbf24" />
+        <polygon points="22,8 24,4 26,8 30,8 27,11 28,15 24,13 20,15 21,11 18,8" fill="#fbbf24" />
+        <polygon points="32,10 34,6 36,10 40,10 37,13 38,17 34,15 30,17 31,13 28,10" fill="#fbbf24" />
+        {/* Cartoon Face: Big glasses / eyes */}
+        <circle cx="23" cy="27" r="4.5" fill="#ffffff" />
+        <circle cx="23" cy="27" r="2" fill="#1e1b4b" />
+        <circle cx="37" cy="27" r="4.5" fill="#ffffff" />
+        <circle cx="37" cy="27" r="2" fill="#1e1b4b" />
+        {/* Smile */}
+        <path d="M25 35 Q30 40 35 35" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" fill="none" />
+        {/* Raised hand pointing up */}
+        <path d="M42 22 L46 16 Q48 15 49 17 L47 24" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" fill="#7c3aed" />
+      </svg>
+    ),
+  },
+  {
+    value: 'Over 1 Lakh',
+    suffix: '',
+    desc: 'Happy families driving Spinny assured cars across India',
+    renderAvatar: () => (
+      <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+        {/* Yellow thumb up character from Image 3 */}
+        <circle cx="30" cy="30" r="24" fill="#fbbf24" />
+        <path d="M26 34 L26 24 C26 21 28 17 31 17 C32 17 33 18 33 20 L33 24 L39 24 C41 24 43 26 43 28 L40 37 C39 39 37 40 35 40 L26 40" stroke="#1f2937" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="#fde047" />
+        <rect x="20" y="24" width="6" height="16" rx="2" fill="#1f2937" />
+      </svg>
+    ),
+  },
+  {
+    value: '> 70%',
+    suffix: '',
+    desc: "People who've become customers after their first test drive",
+    renderAvatar: () => (
+      <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#f43f5e', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '26px' }}>
+        🚗
       </div>
     ),
   },
   {
     value: '35%',
+    suffix: '',
     desc: 'The number of Spinny customers that are referrals',
     renderAvatar: () => (
-      <div style={{ width: '60px', height: '60px', borderRadius: '16px', backgroundColor: '#fbbf24', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '28px', transform: 'rotate(-5deg)' }}>
-        🥳
-      </div>
-    ),
-  },
-  {
-    value: '> 70%',
-    desc: "People who've become customers after their first test drive",
-    renderAvatar: () => (
-      <div style={{ width: '60px', height: '60px', borderRadius: '16px', backgroundColor: '#f43f5e', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '28px', transform: 'rotate(4deg)' }}>
-        👳
-      </div>
-    ),
-  },
-  {
-    value: '32%',
-    desc: 'Our women customer quotient',
-    renderAvatar: () => (
-      <div style={{ width: '60px', height: '60px', borderRadius: '16px', backgroundColor: '#34d399', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '28px', transform: 'rotate(-4deg)' }}>
-        😎
+      <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#34d399', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '26px' }}>
+        🤝
       </div>
     ),
   },
@@ -43,15 +64,15 @@ const STATS = [
 const LOVE_STORIES = [
   {
     id: 1,
-    name: 'Madhulika Singh | Lucknow',
-    quote: "Spinny helped us find a family car that's great for daily commutes and long trips",
-    image: '/assets/stories/story_2.jpg',
+    name: 'Karishma Shah | Ahmedabad',
+    quote: "Superb experience with the team. It didn't feel like we are buying a used car even for a second. Happily making new memories everyday!",
+    image: '/assets/stories/story_1.jpg',
   },
   {
     id: 2,
-    name: 'Ayush Srivastava | Lucknow',
-    quote: "Our first car that we'd truly love for years to come.",
-    image: '/assets/stories/story_1.jpg',
+    name: 'Madhulika Singh | Lucknow',
+    quote: "Spinny helped us find a family car that's great for daily commutes and long trips",
+    image: '/assets/stories/story_2.jpg',
   },
   {
     id: 3,
@@ -78,25 +99,18 @@ export default function InsightsAndLoveStories() {
     >
       <div style={{ maxWidth: '1240px', marginInline: 'auto' }}>
         {/* Part A: Insights That Drive Us */}
-        <div style={{ marginBottom: '64px' }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '32px' }}>
-            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%)' }} />
-            <h2
-              style={{
-                fontSize: '28px',
-                fontWeight: 800,
-                color: '#2e054e',
-                letterSpacing: '-0.3px',
-                whiteSpace: 'nowrap',
-              }}
-            >
+        <div style={{ marginBottom: '52px' }}>
+          <div className="spinny-section-header">
+            <div className="spinny-section-header-line" />
+            <h2 className="spinny-section-title">
               Insights That Drive Us
             </h2>
-            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%)' }} />
+            <div className="spinny-section-header-line reverse" />
           </div>
 
           {/* 4 Soft Lavender Stat Cards */}
           <div
+            className="mobile-slide-carousel"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(4, 1fr)',
@@ -106,6 +120,7 @@ export default function InsightsAndLoveStories() {
             {STATS.map((stat, idx) => (
               <div
                 key={idx}
+                className="mobile-slide-card"
                 style={{
                   backgroundColor: '#7d8df5',
                   borderRadius: '20px',
@@ -135,25 +150,18 @@ export default function InsightsAndLoveStories() {
 
         {/* Part B: Over 2 Lakh Spinny Love Stories */}
         <div>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '36px' }}>
-            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%)' }} />
-            <h2
-              style={{
-                fontSize: '28px',
-                fontWeight: 800,
-                color: '#2e054e',
-                letterSpacing: '-0.3px',
-                whiteSpace: 'nowrap',
-              }}
-            >
+          <div className="spinny-section-header">
+            <div className="spinny-section-header-line" />
+            <h2 className="spinny-section-title">
               Over 2 Lakh Spinny Love Stories
             </h2>
-            <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%)' }} />
+            <div className="spinny-section-header-line reverse" />
           </div>
 
           {/* 4 Story Cards Grid */}
           <div style={{ position: 'relative' }}>
             <div
+              className="mobile-slide-carousel"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(4, 1fr)',
@@ -163,6 +171,7 @@ export default function InsightsAndLoveStories() {
               {LOVE_STORIES.map(story => (
                 <div
                   key={story.id}
+                  className="mobile-slide-card"
                   style={{
                     height: '380px',
                     borderRadius: '20px',
@@ -194,11 +203,28 @@ export default function InsightsAndLoveStories() {
                     }}
                   />
 
+                  {/* Top Instagram story indicator dashes matching Image 3 */}
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '10px',
+                      left: '16px',
+                      right: '16px',
+                      display: 'flex',
+                      gap: '4px',
+                      zIndex: 5,
+                    }}
+                  >
+                    <div style={{ flex: 1, height: '2.5px', backgroundColor: '#ffffff', borderRadius: '9999px', boxShadow: '0 1px 3px rgba(0,0,0,0.4)' }} />
+                    <div style={{ flex: 1, height: '2.5px', backgroundColor: 'rgba(255, 255, 255, 0.4)', borderRadius: '9999px' }} />
+                    <div style={{ flex: 1, height: '2.5px', backgroundColor: 'rgba(255, 255, 255, 0.4)', borderRadius: '9999px' }} />
+                  </div>
+
                   {/* Top myspinny badge */}
                   <div
                     style={{
                       position: 'absolute',
-                      top: '16px',
+                      top: '20px',
                       left: '16px',
                       display: 'flex',
                       alignItems: 'center',
@@ -210,6 +236,7 @@ export default function InsightsAndLoveStories() {
                       color: '#ffffff',
                       fontSize: '11px',
                       fontWeight: 600,
+                      zIndex: 5,
                     }}
                   >
                     <div style={{ width: '14px', height: '14px', borderRadius: '4px', backgroundColor: '#ed264f', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '9px', fontWeight: 800 }}>

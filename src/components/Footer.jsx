@@ -19,8 +19,8 @@ export default function Footer({ onBrowseCars }) {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1.2fr 2fr',
-            gap: '48px',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '40px',
             marginBottom: '48px',
           }}
         >
@@ -152,7 +152,7 @@ export default function Footer({ onBrowseCars }) {
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
               gap: '24px 32px',
             }}
           >

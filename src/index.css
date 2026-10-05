@@ -133,3 +133,199 @@ input {
   height: 0 !important;
   background: transparent !important;
 }
+
+/* Animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0.7;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Responsive Visibility Utilities */
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  body {
+    padding-bottom: 64px;
+  }
+
+  /* One-by-one slide carousel on mobile */
+  .mobile-slide-carousel {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory !important;
+    scroll-padding-left: 20px !important;
+    scroll-padding-inline: 20px !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 16px !important;
+    padding-inline: 20px !important;
+    margin-inline: -20px !important;
+    padding-bottom: 12px !important;
+  }
+
+  .mobile-slide-carousel::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+
+  .mobile-slide-card {
+    flex: 0 0 82% !important;
+    width: 82% !important;
+    max-width: 82% !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+  }
+
+  .mobile-slide-card-compact {
+    flex: 0 0 46% !important;
+    width: 46% !important;
+    max-width: 46% !important;
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* Responsive Section Titles */
+.spinny-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.spinny-section-header-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%);
+}
+
+.spinny-section-header-line.reverse {
+  background: linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%);
+}
+
+.spinny-section-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #2e054e;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .spinny-section-header {
+    display: block !important;
+    text-align: left !important;
+    margin-bottom: 18px !important;
+    gap: 0 !important;
+  }
+  .spinny-section-header-line {
+    display: none !important;
+  }
+  .spinny-section-title {
+    font-size: 21px !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    text-align: left !important;
+    line-height: 1.3 !important;
+    letter-spacing: -0.2px !important;
+    margin: 0 !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    display: none !important;
+  }
+}
+
+/* Responsive Grids across Spinny */
+.spinny-responsive-cars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1200px) {
+  .spinny-responsive-cars-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+}
+@media (max-width: 860px) {
+  .spinny-responsive-cars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+}
+@media (max-width: 540px) {
+  .spinny-responsive-cars-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.spinny-responsive-city-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+@media (max-width: 1080px) {
+  .spinny-responsive-city-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+@media (max-width: 580px) {
+  .spinny-responsive-city-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+.spinny-responsive-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 36px;
+}
+@media (max-width: 1024px) {
+  .spinny-responsive-footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+  }
+}
+@media (max-width: 600px) {
+  .spinny-responsive-footer-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+

@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
-import { Play } from 'lucide-react';
+import { Play, ChevronRight, Check } from 'lucide-react';
 
-const STEPS = [
+const SELL_STEPS = [
   {
     step: 1,
-    title: 'Choose from the best pre-owned cars',
-    subtitle: '20,000+ fully inspected cars online',
+    title: 'Instant online estimate',
+    desc: 'Fill in a few details about your car for an instant quote',
+    ctaText: 'Get quote',
     svg: '/assets/how_it_works/step1_choose.svg',
   },
   {
     step: 2,
-    title: 'Take a test drive at your home or a Spinny Hub',
-    subtitle: 'Sanitized cars for every test drive',
+    title: 'Free evaluation',
+    desc: 'Schedule the evaluation at your convenience, from the comfort of your home or work',
+    ctaText: 'Schedule evaluation',
     svg: '/assets/how_it_works/step2_testdrive.svg',
   },
   {
     step: 3,
-    title: 'Online Payment. Doorstep Delivery.',
-    subtitle: 'And 5-day money back guarantee',
+    title: 'Instant payment',
+    desc: 'Get paid immediately directly into your bank account before handing over the keys',
+    ctaText: 'Sell car',
     svg: '/assets/how_it_works/step3_delivery.svg',
   },
 ];
@@ -28,214 +31,293 @@ export default function HowSpinnyWorks() {
   return (
     <section
       style={{
-        backgroundColor: '#fbfbfd',
-        padding: '56px 24px 64px',
-        borderBottom: '1px solid #ededf2',
+        backgroundColor: '#260442',
+        padding: '52px 20px 60px',
+        color: '#ffffff',
+        position: 'relative',
+        overflow: 'hidden',
       }}
     >
       <div style={{ maxWidth: '1240px', marginInline: 'auto' }}>
-        {/* Title with decorative horizontal divider line */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '8px' }}>
-          <div style={{ flex: 1, height: '1px', backgroundColor: 'transparent' }} />
-          <h2
-            style={{
-              fontSize: '28px',
-              fontWeight: 800,
-              color: '#2e054e',
-              letterSpacing: '-0.3px',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            How Spinny® Works
-          </h2>
-          <div style={{ flex: 1, height: '1px', backgroundColor: '#e2d9ec' }} />
-        </div>
-
-        {/* Subtitle */}
-        <p
+        {/* Title */}
+        <h2
           style={{
+            fontSize: '26px',
+            fontWeight: 800,
             textAlign: 'center',
-            fontSize: '15px',
-            color: '#6c6577',
-            marginBottom: '48px',
+            color: '#ffffff',
+            letterSpacing: '-0.3px',
+            marginBottom: '36px',
           }}
         >
-          You won't just love our cars, you'll love the way you buy them.
-        </p>
+          Selling your car made simple
+        </h2>
 
-        {/* 3 Step Cards */}
+        {/* 3 Step Cards - One-by-one slide on mobile, 3-col on desktop */}
         <div
+          className="mobile-slide-carousel"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '36px',
-            marginBottom: '44px',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '24px',
+            marginBottom: '36px',
           }}
         >
-          {STEPS.map((s, idx) => (
+          {SELL_STEPS.map((s, idx) => (
             <div
               key={idx}
+              className="mobile-slide-card"
               style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '24px',
+                padding: '24px 20px 22px',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
-                textAlign: 'center',
+                justifyContent: 'space-between',
+                color: '#2e054e',
+                boxShadow: '0 8px 24px rgba(0, 0, 0, 0.25)',
+                position: 'relative',
+                minHeight: '340px',
               }}
             >
-              {/* Illustration */}
+              <div>
+                {/* Step Circle Badge */}
+                <div
+                  style={{
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    backgroundColor: '#561381',
+                    color: '#ffffff',
+                    fontSize: '17px',
+                    fontWeight: 800,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '16px',
+                  }}
+                >
+                  {s.step}
+                </div>
+
+                {/* Illustration Circle */}
+                <div
+                  style={{
+                    width: '120px',
+                    height: '120px',
+                    borderRadius: '50%',
+                    backgroundColor: '#f5effb',
+                    margin: '0 auto 20px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                  }}
+                >
+                  <img
+                    src={s.svg}
+                    alt={s.title}
+                    style={{ width: '85%', height: '85%', objectFit: 'contain' }}
+                  />
+                </div>
+
+                {/* Step Title & Description */}
+                <h3
+                  style={{
+                    fontSize: '18px',
+                    fontWeight: 700,
+                    color: '#2e054e',
+                    textAlign: 'center',
+                    marginBottom: '10px',
+                  }}
+                >
+                  {s.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: '13.5px',
+                    color: '#555555',
+                    textAlign: 'center',
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {s.desc}
+                </p>
+              </div>
+
+              {/* Bottom CTA Link */}
               <div
+                onClick={() => alert(`Spinny Selling: ${s.ctaText}`)}
                 style={{
-                  height: '190px',
-                  width: '100%',
+                  marginTop: '20px',
+                  paddingTop: '14px',
+                  borderTop: '1px solid #f0f0f4',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  marginBottom: '24px',
-                }}
-              >
-                <img
-                  src={s.svg}
-                  alt={s.title}
-                  style={{
-                    maxHeight: '180px',
-                    maxWidth: '240px',
-                    width: 'auto',
-                    height: 'auto',
-                    objectFit: 'contain',
-                    transition: 'transform 0.25s ease',
-                  }}
-                  onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-4px)')}
-                  onMouseOut={e => (e.currentTarget.style.transform = 'translateY(0)')}
-                />
-              </div>
-
-              {/* Title & Subtitle */}
-              <h3
-                style={{
-                  fontSize: '17px',
+                  gap: '4px',
+                  color: '#561381',
+                  fontSize: '14.5px',
                   fontWeight: 700,
-                  color: '#2e054e',
-                  marginBottom: '8px',
-                  lineHeight: 1.35,
-                  maxWidth: '300px',
+                  cursor: 'pointer',
                 }}
               >
-                {s.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: '13.5px',
-                  color: '#6e6a78',
-                  lineHeight: 1.4,
-                  maxWidth: '280px',
-                }}
-              >
-                {s.subtitle}
-              </p>
+                <span>{s.ctaText}</span>
+                <ChevronRight size={16} />
+              </div>
             </div>
           ))}
         </div>
 
-        {/* Bottom Actions: Watch how it works & Learn more */}
+        {/* Action Buttons: Watch the film & Learn more */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: '14px',
+            gap: '16px',
+            marginBottom: '36px',
           }}
         >
           <button
             onClick={() => setIsVideoModalOpen(true)}
             style={{
-              backgroundColor: '#440274',
-              color: '#ffffff',
+              backgroundColor: '#ffffff',
+              color: '#2e054e',
               fontSize: '14.5px',
               fontWeight: 700,
-              padding: '12px 30px',
+              padding: '12px 28px',
               borderRadius: '9999px',
               display: 'inline-flex',
               alignItems: 'center',
               gap: '8px',
               cursor: 'pointer',
-              boxShadow: '0 4px 16px rgba(68, 2, 116, 0.25)',
-              transition: 'all 0.18s ease',
-            }}
-            onMouseOver={e => {
-              e.currentTarget.style.backgroundColor = '#380160';
-              e.currentTarget.style.transform = 'translateY(-1px)';
-            }}
-            onMouseOut={e => {
-              e.currentTarget.style.backgroundColor = '#440274';
-              e.currentTarget.style.transform = 'translateY(0)';
+              boxShadow: '0 4px 14px rgba(0, 0, 0, 0.2)',
             }}
           >
-            <span>Watch how it works</span>
-            <div
+            <span>Watch the film</span>
+            <Play size={12} fill="#2e054e" />
+          </button>
+
+          <a
+            href="#sell"
+            style={{
+              color: '#ffffff',
+              fontSize: '14px',
+              fontWeight: 600,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+              opacity: 0.9,
+            }}
+          >
+            <span>Learn More</span>
+            <ChevronRight size={14} />
+          </a>
+        </div>
+
+        {/* SellRight by Spinny Bottom Trust Line */}
+        <div
+          style={{
+            borderTop: '1px solid rgba(255, 255, 255, 0.14)',
+            paddingTop: '24px',
+            textAlign: 'center',
+          }}
+        >
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              marginBottom: '10px',
+            }}
+          >
+            <span style={{ fontSize: '16px', fontWeight: 800, letterSpacing: '0.4px' }}>
+              Sell<span style={{ color: '#00d9a5' }}>Right</span>
+            </span>
+            <span
               style={{
                 width: '18px',
                 height: '18px',
                 borderRadius: '50%',
-                backgroundColor: '#ffffff',
+                backgroundColor: '#00d9a5',
+                color: '#260442',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
               }}
             >
-              <Play size={10} fill="#440274" color="#440274" style={{ marginLeft: '1px' }} />
-            </div>
-          </button>
+              <Check size={12} strokeWidth={3} />
+            </span>
+            <span style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>
+              by Spinny
+            </span>
+          </div>
 
-          <a
-            href="#learn"
+          <p
             style={{
               fontSize: '14px',
+              fontStyle: 'italic',
               fontWeight: 600,
-              color: '#440274',
-              textDecoration: 'none',
-              cursor: 'pointer',
-              transition: 'opacity 0.15s ease',
+              color: 'rgba(255, 255, 255, 0.9)',
+              marginBottom: '12px',
             }}
-            onMouseOver={e => (e.currentTarget.style.opacity = '0.75')}
-            onMouseOut={e => (e.currentTarget.style.opacity = '1')}
           >
-            Learn more
-          </a>
+            The best experience for your car. Simple selling experience.
+          </p>
+
+          <div
+            style={{
+              fontSize: '12px',
+              color: 'rgba(255, 255, 255, 0.65)',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: '8px 16px',
+            }}
+          >
+            <span>Best Price Assurance</span>
+            <span>•</span>
+            <span>Instant Payment</span>
+            <span>•</span>
+            <span>Free RC Transfer</span>
+            <span>•</span>
+            <span>Free evaluation</span>
+          </div>
         </div>
       </div>
 
       {/* Video Modal */}
       {isVideoModalOpen && (
         <div
+          onClick={() => setIsVideoModalOpen(false)}
           style={{
             position: 'fixed',
             inset: 0,
-            zIndex: 9999,
-            backgroundColor: 'rgba(0,0,0,0.85)',
+            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+            zIndex: 100000,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             padding: '20px',
           }}
-          onClick={() => setIsVideoModalOpen(false)}
         >
           <div
+            onClick={e => e.stopPropagation()}
             style={{
+              position: 'relative',
               width: '100%',
-              maxWidth: '820px',
-              backgroundColor: '#000',
+              maxWidth: '680px',
+              backgroundColor: '#000000',
               borderRadius: '16px',
               overflow: 'hidden',
-              boxShadow: '0 20px 60px rgba(0,0,0,0.6)',
+              boxShadow: '0 20px 60px rgba(0, 0, 0, 0.5)',
             }}
-            onClick={e => e.stopPropagation()}
           >
-            <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0 }}>
+            <div style={{ position: 'relative', paddingTop: '56.25%' }}>
               <iframe
-                title="How Spinny Works Video"
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
+                title="Selling with Spinny"
+                src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1"
                 style={{
                   position: 'absolute',
                   top: 0,
@@ -244,8 +326,29 @@ export default function HowSpinnyWorks() {
                   height: '100%',
                   border: 0,
                 }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               />
             </div>
+            <button
+              onClick={() => setIsVideoModalOpen(false)}
+              style={{
+                position: 'absolute',
+                top: '12px',
+                right: '12px',
+                backgroundColor: 'rgba(255, 255, 255, 0.25)',
+                color: '#fff',
+                width: '32px',
+                height: '32px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+              }}
+            >
+              ✕
+            </button>
           </div>
         </div>
       )}

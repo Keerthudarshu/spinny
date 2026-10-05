@@ -1,8 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronDown, Search, Phone, ExternalLink, Shield, Car, Heart, Sparkles } from 'lucide-react';
+import {
+  ChevronDown,
+  Search,
+  Phone,
+  ExternalLink,
+  Shield,
+  Car,
+  Heart,
+  Sparkles,
+  Menu,
+  X,
+  Tag,
+  DollarSign,
+  FileText,
+  Info,
+  HelpCircle,
+  MapPin,
+  User,
+} from 'lucide-react';
 import SpinnyLogo from './SpinnyLogo';
 import ShortlistIcon from './ShortlistIcon';
 import AccountIcon from './AccountIcon';
+import MobileNavDrawer from './MobileNavDrawer';
 
 export default function Header({
   selectedCity,
@@ -13,6 +32,7 @@ export default function Header({
   shortlistCount = 0,
 }) {
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [searchPlaceholderIdx, setSearchPlaceholderIdx] = useState(0);
 
   const searchKeywords = ['model', 'budget', 'brand', 'body type'];
@@ -24,6 +44,18 @@ export default function Header({
     return () => clearInterval(interval);
   }, []);
 
+  // Prevent background scrolling when mobile drawer is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <header
       style={{
@@ -34,7 +66,11 @@ export default function Header({
         boxShadow: '0 2px 10px rgba(0, 0, 0, 0.25)',
       }}
     >
+      {/* ========================================================
+          DESKTOP HEADER (Screens > 768px)
+         ======================================================== */}
       <div
+        className="desktop-only"
         style={{
           maxWidth: '1360px',
           height: '82px',
@@ -185,7 +221,7 @@ export default function Header({
                     {['Hatchbacks', 'Sedans', 'SUVs', 'Luxury Cars', 'Cars under 5 Lakh', 'Automatic Cars'].map(item => (
                       <a
                         key={item}
-                        href="#"
+                        href="#featured-cars"
                         style={{
                           padding: '8px 10px',
                           borderRadius: '8px',
@@ -272,31 +308,30 @@ export default function Header({
                   zIndex: 50,
                 }}
               >
-                <a
-                  href="#"
-                  style={{
-                    display: 'block',
-                    padding: '10px 12px',
-                    borderRadius: '10px',
-                    backgroundColor: '#f8f9fa',
-                    marginBottom: '8px',
-                  }}
-                >
-                  <div style={{ fontSize: '14px', fontWeight: 600, color: '#1a1a1a' }}>Instant Online Valuation</div>
-                  <div style={{ fontSize: '12px', color: '#777' }}>Get price estimate in 10 seconds</div>
-                </a>
-                <a
-                  href="#"
-                  style={{
-                    display: 'block',
-                    padding: '10px 12px',
-                    borderRadius: '10px',
-                    backgroundColor: '#f8f9fa',
-                  }}
-                >
-                  <div style={{ fontSize: '14px', fontWeight: 600, color: '#1a1a1a' }}>Free Doorstep Evaluation</div>
-                  <div style={{ fontSize: '12px', color: '#777' }}>Instant payment & free RC transfer</div>
-                </a>
+                <div style={{ padding: '8px 4px' }}>
+                  <div style={{ fontSize: '14.5px', fontWeight: 700, color: '#2e054e', marginBottom: '4px' }}>
+                    Instant Car Valuation
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#666', marginBottom: '12px' }}>
+                    Sell your car from home in 3 simple steps at best price guaranteed.
+                  </div>
+                  <button
+                    onClick={() => alert('Spinny Sell Car: Get instant online valuation at zero fee!')}
+                    style={{
+                      width: '100%',
+                      backgroundColor: 'var(--ds-primary-pink)',
+                      color: '#ffffff',
+                      fontSize: '13px',
+                      fontWeight: 700,
+                      padding: '10px',
+                      borderRadius: '8px',
+                      textAlign: 'center',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    Get Car Price
+                  </button>
+                </div>
               </div>
             )}
           </div>
@@ -374,7 +409,7 @@ export default function Header({
             )}
           </div>
 
-          {/* Shortlisted (Heart icon on top + text below) */}
+          {/* Shortlisted */}
           <button
             onClick={onOpenShortlist}
             aria-label="Shortlisted cars"
@@ -392,7 +427,7 @@ export default function Header({
             onMouseOver={e => (e.currentTarget.style.transform = 'translateY(-1px)')}
             onMouseOut={e => (e.currentTarget.style.transform = 'translateY(0)')}
           >
-            <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <div style={{ position: 'relative' }}>
               <ShortlistIcon size={20} />
               {shortlistCount > 0 && (
                 <span
@@ -421,7 +456,7 @@ export default function Header({
             </span>
           </button>
 
-          {/* Account ▾ (Smiling Diamond Avatar on top + text below) */}
+          {/* Account ▾ */}
           <div
             style={{ position: 'relative' }}
             onMouseEnter={() => setActiveDropdown('account')}
@@ -521,6 +556,165 @@ export default function Header({
           </a>
         </div>
       </div>
+
+      {/* ========================================================
+          MOBILE COMPACT HEADER (Screens <= 768px)
+         ======================================================== */}
+      <div
+        className="mobile-only"
+        style={{
+          width: '100%',
+          paddingInline: '14px',
+          paddingBlock: '10px',
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            height: '42px',
+          }}
+        >
+          {/* Left: Menu Hamburger + Logo */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <button
+              onClick={() => setIsMobileMenuOpen(true)}
+              aria-label="Open mobile menu"
+              style={{
+                width: '36px',
+                height: '36px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#ffffff',
+              }}
+            >
+              <Menu size={24} />
+            </button>
+            <SpinnyLogo height={28} />
+          </div>
+
+          {/* Right: City selector + Search + Heart + Account */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            {/* City selector pill */}
+            <button
+              onClick={onOpenCityModal}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
+                padding: '5px 10px',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.25)',
+                color: '#ffffff',
+                fontSize: '12px',
+                fontWeight: 500,
+                backgroundColor: 'rgba(255, 255, 255, 0.08)',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              <MapPin size={11} color="#ed264f" />
+              <span>{selectedCity ? selectedCity.split(' ')[0] : 'City'}</span>
+              <ChevronDown size={12} />
+            </button>
+
+            {/* Search Icon */}
+            <button
+              onClick={onOpenSearchModal}
+              aria-label="Search"
+              style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#ffffff',
+              }}
+            >
+              <Search size={16} />
+            </button>
+
+            {/* Shortlist Heart */}
+            <button
+              onClick={onOpenShortlist}
+              aria-label="Shortlist"
+              style={{
+                width: '34px',
+                height: '34px',
+                borderRadius: '50%',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: '#ffffff',
+                position: 'relative',
+              }}
+            >
+              <Heart size={16} />
+              {shortlistCount > 0 && (
+                <span
+                  style={{
+                    position: 'absolute',
+                    top: '-3px',
+                    right: '-3px',
+                    backgroundColor: '#ed264f',
+                    color: '#fff',
+                    fontSize: '9px',
+                    fontWeight: 700,
+                    width: '14px',
+                    height: '14px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {shortlistCount}
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Search Capsule */}
+        <div
+          onClick={onOpenSearchModal}
+          style={{
+            marginTop: '8px',
+            height: '40px',
+            borderRadius: '24px',
+            backgroundColor: 'rgba(0, 0, 0, 0.28)',
+            border: '1px solid rgba(255, 255, 255, 0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            paddingInline: '14px',
+            gap: '8px',
+            cursor: 'pointer',
+          }}
+        >
+          <Search size={15} color="#ed264f" />
+          <span style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.8)' }}>
+            Search by car, model, budget...
+          </span>
+        </div>
+      </div>
+
+      {/* ========================================================
+          MOBILE NAVIGATION DRAWER (Matching all 3 reference screenshots)
+         ======================================================== */}
+      <MobileNavDrawer
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        onOpenAccountModal={onOpenAccountModal}
+        onBrowseCars={() => {
+          const el = document.getElementById('featured-cars');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }}
+        onOpenSell={() => alert('Spinny Sell Car: Get instant valuation at zero fee!')}
+      />
     </header>
   );
 }

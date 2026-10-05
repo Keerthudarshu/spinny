@@ -51,34 +51,23 @@ export default function CarsAcrossIndia({ onSelectCity }) {
     >
       <div style={{ maxWidth: '1240px', marginInline: 'auto' }}>
         {/* Title with lines */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '36px' }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%)' }} />
-          <h2
-            style={{
-              fontSize: '28px',
-              fontWeight: 800,
-              color: '#2e054e',
-              letterSpacing: '-0.3px',
-              whiteSpace: 'nowrap',
-            }}
-          >
+        <div className="spinny-section-header">
+          <div className="spinny-section-header-line" />
+          <h2 className="spinny-section-title">
             Cars across India
           </h2>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%)' }} />
+          <div className="spinny-section-header-line reverse" />
         </div>
 
         {/* City Cards Grid with Rotated Diamonds */}
         <div style={{ position: 'relative', marginBottom: '40px' }}>
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '20px',
-            }}
+            className="spinny-responsive-city-grid mobile-slide-carousel"
           >
             {CITIES.map((city, idx) => (
               <div
                 key={idx}
+                className="mobile-slide-card"
                 onClick={() => onSelectCity && onSelectCity(city.name)}
                 style={{
                   backgroundColor: city.bg,

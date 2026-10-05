@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Car } from 'lucide-react';
 
 const SLIDES = [
   {
@@ -92,12 +92,12 @@ export default function HeroBanner({ onCtaClick }) {
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* Aspect Ratio Container (matches Spinny 33vw / ~480px height) */}
+      {/* Aspect Ratio Container (matches Spinny on desktop and mobile) */}
       <div
         style={{
           position: 'relative',
           width: '100%',
-          height: 'clamp(280px, 33vw, 490px)',
+          height: 'clamp(380px, 45vw, 490px)',
           overflow: 'hidden',
         }}
       >
@@ -124,8 +124,9 @@ export default function HeroBanner({ onCtaClick }) {
                 backgroundRepeat: 'no-repeat',
               }}
             >
-              {/* Content overlay container */}
+              {/* Desktop Content overlay container */}
               <div
+                className="desktop-only"
                 style={{
                   position: 'relative',
                   zIndex: 10,
@@ -170,6 +171,51 @@ export default function HeroBanner({ onCtaClick }) {
                   }}
                 >
                   {slide.ctaText}
+                </button>
+              </div>
+
+              {/* Mobile Content overlay (matching Reference Image 2) */}
+              <div
+                className="mobile-only"
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(180deg, rgba(0,0,0,0) 25%, rgba(0,0,0,0.85) 100%)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                  padding: '24px 20px',
+                  color: '#ffffff',
+                  textAlign: 'center',
+                  zIndex: 10,
+                }}
+              >
+                <h2 style={{ fontSize: '22px', fontWeight: 800, marginBottom: '6px', textShadow: '0 2px 8px rgba(0,0,0,0.5)' }}>
+                  Cars you love to buy
+                </h2>
+                <p style={{ fontSize: '13px', color: 'rgba(255, 255, 255, 0.9)', marginBottom: '18px', maxWidth: '320px', marginInline: 'auto', lineHeight: 1.4 }}>
+                  Trusted by over 1 Lakh Customers. Choose from 5000+ spinny assured cars.
+                </p>
+                <button
+                  onClick={() => onCtaClick && onCtaClick(slide)}
+                  style={{
+                    width: '100%',
+                    height: '48px',
+                    borderRadius: '10px',
+                    backgroundColor: '#ed264f',
+                    color: '#ffffff',
+                    fontSize: '15px',
+                    fontWeight: 700,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '8px',
+                    boxShadow: '0 6px 20px rgba(237, 38, 79, 0.4)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Car size={18} />
+                  <span>{slide.ctaText || 'Buy car'}</span>
                 </button>
               </div>
             </div>

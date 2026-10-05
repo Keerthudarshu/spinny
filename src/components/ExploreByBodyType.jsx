@@ -65,20 +65,12 @@ export default function ExploreByBodyType({ onSelectCar }) {
     >
       <div style={{ maxWidth: '1240px', marginInline: 'auto' }}>
         {/* Title with lines */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '28px' }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%)' }} />
-          <h2
-            style={{
-              fontSize: '28px',
-              fontWeight: 800,
-              color: '#2e054e',
-              letterSpacing: '-0.3px',
-              whiteSpace: 'nowrap',
-            }}
-          >
+        <div className="spinny-section-header">
+          <div className="spinny-section-header-line" />
+          <h2 className="spinny-section-title">
             Explore by Body Type
           </h2>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%)' }} />
+          <div className="spinny-section-header-line reverse" />
         </div>
 
         {/* Body Type Tab Selector with Silhouette Icons */}
@@ -160,16 +152,12 @@ export default function ExploreByBodyType({ onSelectCar }) {
         {/* 4 Car Model Cards */}
         <div style={{ position: 'relative', marginBottom: '40px' }}>
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '20px',
-            }}
+            className="spinny-responsive-cars-grid mobile-slide-carousel"
           >
             {cars.map((car, idx) => (
               <div
                 key={idx}
-                className="animate-fade-in"
+                className="animate-fade-in mobile-slide-card"
                 onClick={() => onSelectCar && onSelectCar(car)}
                 style={{
                   backgroundColor: '#ffffff',

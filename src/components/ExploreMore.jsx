@@ -96,24 +96,17 @@ export default function ExploreMore({ onServiceClick }) {
     >
       <div style={{ maxWidth: '1240px', marginInline: 'auto' }}>
         {/* Title with lines */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '36px' }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%)' }} />
-          <h2
-            style={{
-              fontSize: '28px',
-              fontWeight: 800,
-              color: '#2e054e',
-              letterSpacing: '-0.3px',
-              whiteSpace: 'nowrap',
-            }}
-          >
+        <div className="spinny-section-header">
+          <div className="spinny-section-header-line" />
+          <h2 className="spinny-section-title">
             Explore More
           </h2>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%)' }} />
+          <div className="spinny-section-header-line reverse" />
         </div>
 
         {/* 4 Deep Purple Service Cards */}
         <div
+          className="mobile-slide-carousel"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(4, 1fr)',
@@ -123,6 +116,7 @@ export default function ExploreMore({ onServiceClick }) {
           {SERVICES.map(srv => (
             <div
               key={srv.id}
+              className="mobile-slide-card"
               style={{
                 backgroundColor: '#240638',
                 borderRadius: '20px',

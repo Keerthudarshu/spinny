@@ -10,12 +10,15 @@ import CarsAcrossIndia from './components/CarsAcrossIndia';
 import ExploreMore from './components/ExploreMore';
 import SpinnyBuzz from './components/SpinnyBuzz';
 import InsightsAndLoveStories from './components/InsightsAndLoveStories';
+import FindMyCarQuestionnaire from './components/FindMyCarQuestionnaire';
+import SpinnyAppExperience from './components/SpinnyAppExperience';
 import FaqAndSeo from './components/FaqAndSeo';
 import Footer from './components/Footer';
 import CityModal from './components/CityModal';
 import SearchModal from './components/SearchModal';
 import AccountModal from './components/AccountModal';
 import ShortlistDrawer from './components/ShortlistDrawer';
+import MobileBottomNav from './components/MobileBottomNav';
 
 export default function App() {
   const [selectedCity, setSelectedCity] = useState('Delhi NCR');
@@ -91,10 +94,18 @@ export default function App() {
       {/* 4. Spinny benefits (Buy/Sell toggle, 4 photo cards with icon badges) */}
       <SpinnyBenefits onBrowseCars={scrollToCars} />
 
-      {/* 5. How Spinny® Works (3 illustrated steps with authentic SVGs) */}
+      {/* 5. "Answer a few questions to find a car that fits your needs" (Matching Reference Image 1) */}
+      <FindMyCarQuestionnaire
+        onFindCars={criteria => {
+          alert(`Finding ${criteria.bodyType}s (${criteria.fuel}) within ${criteria.budget}`);
+          scrollToCars();
+        }}
+      />
+
+      {/* 6. How Spinny® Works (Selling your car made simple - Matching Reference Image 1 & 4) */}
       <HowSpinnyWorks />
 
-      {/* 6. Featured Spinny cars (Best buys for you / Newly added, car cards carousel) */}
+      {/* 7. Featured Spinny cars (Best buys for you / Newly added, car cards carousel) */}
       <div id="featured-cars">
         <FeaturedCars
           onToggleShortlist={handleToggleShortlist}
@@ -102,14 +113,14 @@ export default function App() {
         />
       </div>
 
-      {/* 7. Explore by Body Type (Silhouette icons, Baleno, Kwid, Grand i10, Swift) */}
+      {/* 8. Explore by Body Type (Silhouette icons, Baleno, Kwid, Grand i10, Swift) */}
       <ExploreByBodyType
         onSelectCar={car => {
           alert(`Selected ${car.name}. Browsing available verified stock.`);
         }}
       />
 
-      {/* 8. Cars across India (Vibrant cards with 45-deg diamond landmark photos) */}
+      {/* 9. Cars across India (Vibrant cards with 45-deg diamond landmark photos) */}
       <CarsAcrossIndia
         onSelectCity={city => {
           setSelectedCity(city);
@@ -117,20 +128,23 @@ export default function App() {
         }}
       />
 
-      {/* 9. Explore More (Loan, Buyback, FASTag, Challan with neon outlines) */}
+      {/* 10. Explore More (Loan, Buyback, FASTag, Challan with neon outlines) */}
       <ExploreMore
         onServiceClick={srv => {
           alert(`Opened ${srv.title} service: ${srv.subtitle}`);
         }}
       />
 
-      {/* 10. Spinny Buzz (Economic Times, Yourstory, Financial Express, AFAQS press cards) */}
+      {/* 11. Spinny Buzz (Economic Times, Yourstory, Financial Express, AFAQS press cards) */}
       <SpinnyBuzz />
 
-      {/* 11. Insights That Drive Us & Over 2 Lakh Spinny Love Stories */}
+      {/* 12. Insights That Drive Us & Over 2 Lakh Spinny Love Stories (Matching Reference Image 3) */}
       <InsightsAndLoveStories />
 
-      {/* 12. Frequently Asked Questions & Why buy a used car from Spinny? SEO Block */}
+      {/* 13. Discover the full Spinny experience & Phone Helpline (Matching Reference Image 5) */}
+      <SpinnyAppExperience />
+
+      {/* 14. Frequently Asked Questions & Why buy a used car from Spinny? SEO Block */}
       <FaqAndSeo />
 
       {/* 13. Official Spinny Mega Footer */}
@@ -162,6 +176,15 @@ export default function App() {
         isOpen={isShortlistOpen}
         onClose={() => setIsShortlistOpen(false)}
         shortlistedItems={shortlistedCars}
+      />
+
+      {/* Mobile Signature Fixed Bottom Navigation Bar */}
+      <MobileBottomNav
+        shortlistCount={shortlistedCars.length}
+        onOpenShortlist={() => setIsShortlistOpen(true)}
+        onOpenAccount={() => setIsAccountModalOpen(true)}
+        onOpenSell={() => alert('Spinny Sell Car: Get instant online valuation at zero fee!')}
+        onBrowseCars={scrollToCars}
       />
     </div>
   );

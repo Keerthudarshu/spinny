@@ -114,20 +114,12 @@ export default function FeaturedCars({ onToggleShortlist, shortlistedIds = [] })
     >
       <div style={{ maxWidth: '1240px', marginInline: 'auto' }}>
         {/* Title with decorative lines on both sides */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', marginBottom: '24px' }}>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, transparent 0%, rgba(68, 2, 116, 0.2) 100%)' }} />
-          <h2
-            style={{
-              fontSize: '28px',
-              fontWeight: 800,
-              color: '#2e054e',
-              letterSpacing: '-0.3px',
-              whiteSpace: 'nowrap',
-            }}
-          >
+        <div className="spinny-section-header" style={{ marginBottom: '24px' }}>
+          <div className="spinny-section-header-line" />
+          <h2 className="spinny-section-title">
             Featured Spinny cars
           </h2>
-          <div style={{ flex: 1, height: '1px', background: 'linear-gradient(90deg, rgba(68, 2, 116, 0.2) 0%, transparent 100%)' }} />
+          <div className="spinny-section-header-line reverse" />
         </div>
 
         {/* Toggle Pills: Best buys for you / Newly added */}
@@ -175,19 +167,14 @@ export default function FeaturedCars({ onToggleShortlist, shortlistedIds = [] })
         {/* Carousel Container */}
         <div style={{ position: 'relative', marginBottom: '40px' }}>
           <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              gap: '20px',
-              overflowX: 'auto',
-              scrollbarWidth: 'none',
-            }}
+            className="spinny-responsive-cars-grid mobile-slide-carousel"
           >
-            {FEATURED_CARS.slice(scrollIndex, scrollIndex + 4).map(car => {
+            {FEATURED_CARS.map(car => {
               const isShortlisted = shortlistedIds.includes(car.id);
               return (
                 <div
                   key={car.id}
+                  className="mobile-slide-card"
                   style={{
                     backgroundColor: '#ffffff',
                     borderRadius: '16px',

@@ -136,6 +136,7 @@ export default function SpinnyBenefits({ onBrowseCars }) {
 
         {/* 4 Benefit Cards Grid */}
         <div
+          className="mobile-slide-carousel"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
@@ -146,7 +147,7 @@ export default function SpinnyBenefits({ onBrowseCars }) {
           {benefits.map((benefit, idx) => (
             <div
               key={idx}
-              className="animate-fade-in"
+              className="animate-fade-in mobile-slide-card"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
